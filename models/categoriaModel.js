@@ -6,7 +6,7 @@ exports.criarCategoria = (dados) => {
 };
 
 exports.listarCategorias = () => {
-  return db.query('SELECT * FROM categoria');
+  return db.query('SELECT * FROM categories');
 };
 
 exports.editarCategoria = (dados) => {

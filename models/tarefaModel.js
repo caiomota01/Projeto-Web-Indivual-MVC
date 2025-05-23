@@ -7,7 +7,7 @@ exports.criarTarefa = (dados) => {
 };
 
 exports.listarTarefas = () => {
-  return db.query('SELECT * FROM tarefa');
+  return db.query('SELECT * FROM tasks');
 };
 
 exports.editarTarefa = (dados) => {

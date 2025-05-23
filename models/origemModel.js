@@ -6,7 +6,7 @@ exports.criarOrigem = (dados) => {
 };
 
 exports.listarOrigens = () => {
-  return db.query('SELECT * FROM origem');
+  return db.query('SELECT * FROM origins');
 };
 
 exports.editarOrigem = (dados) => {
