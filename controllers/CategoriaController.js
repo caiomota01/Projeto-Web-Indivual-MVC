@@ -1,11 +1,11 @@
-const db = require('../config/db');
+const categoriaModel = require('../models/categoriaModel');
 
 // Criar uma nova categoria
 exports.criarCategoria = async (req, res) => {
   const { nome, prioridade } = req.body;
-  const query = 'INSERT INTO categoria (nome, prioridade) VALUES ($1, $2) RETURNING *';
+  const values = [nome, prioridade];
   try {
-    const result = await db.query(query, [nome, prioridade]);
+    const result = await categoriaModel.criarCategoria(values);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -14,9 +14,8 @@ exports.criarCategoria = async (req, res) => {
 
 // Listar todas as categorias
 exports.listarCategorias = async (req, res) => {
-  const query = 'SELECT * FROM categoria';
   try {
-    const result = await db.query(query);
+    const result = await categoriaModel.listarCategorias();
     res.status(200).json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -27,9 +26,9 @@ exports.listarCategorias = async (req, res) => {
 exports.editarCategoria = async (req, res) => {
   const { id } = req.params;
   const { nome, prioridade } = req.body;
-  const query = 'UPDATE categoria SET nome = $1, prioridade = $2 WHERE id = $3 RETURNING *';
+  const values = [nome, prioridade, id];
   try {
-    const result = await db.query(query, [nome, prioridade, id]);
+    const result = await categoriaModel.editarCategoria(values);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Categoria não encontrada' });
     }
@@ -42,9 +41,8 @@ exports.editarCategoria = async (req, res) => {
 // Excluir uma categoria
 exports.excluirCategoria = async (req, res) => {
   const { id } = req.params;
-  const query = 'DELETE FROM categoria WHERE id = $1 RETURNING *';
   try {
-    const result = await db.query(query, [id]);
+    const result = await categoriaModel.excluirCategoria(id);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Categoria não encontrada' });
     }

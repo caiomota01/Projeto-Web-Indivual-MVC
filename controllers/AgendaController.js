@@ -1,11 +1,11 @@
-const db = require('../config/db');
+const agendaModel = require('../models/agendaModel');
 
 // Criar uma nova agenda
 exports.criarAgenda = async (req, res) => {
   const { tarefa_id, data_inicio, data_fim, anotacoes } = req.body;
-  const query = 'INSERT INTO agenda (tarefa_id, data_inicio, data_fim, anotacoes) VALUES ($1, $2, $3, $4) RETURNING *';
+  const values = [tarefa_id, data_inicio, data_fim, anotacoes];
   try {
-    const result = await db.query(query, [tarefa_id, data_inicio, data_fim, anotacoes]);
+    const result = await agendaModel.criarAgenda(values);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -14,9 +14,8 @@ exports.criarAgenda = async (req, res) => {
 
 // Listar todas as agendas
 exports.listarAgendas = async (req, res) => {
-  const query = 'SELECT * FROM agenda';
   try {
-    const result = await db.query(query);
+    const result = await agendaModel.listarAgendas();
     res.status(200).json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -27,9 +26,9 @@ exports.listarAgendas = async (req, res) => {
 exports.editarAgenda = async (req, res) => {
   const { id } = req.params;
   const { tarefa_id, data_inicio, data_fim, anotacoes } = req.body;
-  const query = 'UPDATE agenda SET tarefa_id = $1, data_inicio = $2, data_fim = $3, anotacoes = $4 WHERE id = $5 RETURNING *';
+  const values = [tarefa_id, data_inicio, data_fim, anotacoes, id];
   try {
-    const result = await db.query(query, [tarefa_id, data_inicio, data_fim, anotacoes, id]);
+    const result = await agendaModel.editarAgenda(values);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Agenda não encontrada' });
     }
@@ -42,9 +41,8 @@ exports.editarAgenda = async (req, res) => {
 // Excluir uma agenda
 exports.excluirAgenda = async (req, res) => {
   const { id } = req.params;
-  const query = 'DELETE FROM agenda WHERE id = $1 RETURNING *';
   try {
-    const result = await db.query(query, [id]);
+    const result = await agendaModel.excluirAgenda(id);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Agenda não encontrada' });
     }
