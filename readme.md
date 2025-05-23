@@ -20,26 +20,25 @@
 
 ## Instalação
 
-1. Clone o repositório:
+1. **Clonar o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/yourboard.git
-cd yourboard
-Instale as dependências:
+git clone https://github.com/caiomota01/Projeto-Web-Indivual-MVC
+cd Projeto-Web-Indivual-MVC
+```
 
-bash
-Sempre exibir os detalhes
 
-Copiar
+2. **Instalar as dependências:**
+    
+```bash
 npm install
-Configure o arquivo .env:
+```
 
-Renomeie o arquivo .env.example para .env e insira suas credenciais:
+Configuração do Banco de Dados
+------------------------------
 
-env
-Sempre exibir os detalhes
-
-Copiar
+1. **Criar banco de dados:**
+    
 DB_USER=postgres.koeiopqqlkgjjbfkftkr
 DB_HOST=aws-0-sa-east-1.pooler.supabase.com
 DB_DATABASE=postgres
@@ -47,120 +46,61 @@ DB_PASSWORD=VE33226sp993@
 DB_PORT=6543
 DB_SSL=false
 PORT=3000
-Inicialize o banco de dados:
-
-bash
-Sempre exibir os detalhes
-
-Copiar
+    
+2. **Executar o script SQL de inicialização:**
+    
+```bash
 npm run init-db
-Isso criará as tabelas e registros iniciais no PostgreSQL.
+```
+    
+Isso criará a tabela `users` no seu banco de dados PostgreSQL com UUID como chave primária e inserirá alguns registros de exemplo.
+    
 
-Endpoints Principais
-Método	Rota	Descrição
-POST	/tarefas	Cria uma nova tarefa
-GET	/tarefas	Lista todas as tarefas
-PUT	/tarefas/:id	Atualiza uma tarefa
-DELETE	/tarefas/:id	Deleta uma tarefa
-POST	/categorias	Cria uma nova categoria
-GET	/categorias	Lista todas as categorias
-PUT	/categorias/:id	Atualiza uma categoria
-DELETE	/categorias/:id	Deleta uma categoria
-POST	/origens	Cria uma nova origem
-GET	/origens	Lista todas as origens
-PUT	/origens/:id	Atualiza uma origem
-DELETE	/origens/:id	Deleta uma origem
-POST	/agendas	Cria um agendamento
-GET	/agendas	Lista todos os agendamentos
-PUT	/agendas/:id	Atualiza um agendamento
-DELETE	/agendas/:id	Deleta um agendamento
+Funcionalidades
+---------------
 
-Exemplo de requisição para criar tarefa
-json
-Sempre exibir os detalhes
+Cadastro de usuários
 
-Copiar
-{
-  "titulo": "Estudar para prova",
-  "descricao": "Revisar capítulos 1 a 3",
-  "status": "pendente",
-  "data_desejada": "2024-06-10",
-  "data_limite": "2024-06-15",
-  "importancia": 5,
-  "progresso": 0,
-  "usuario_id": 1,
-  "categoria_id": 1,
-  "origem_id": 1
-}
-Estrutura de Diretórios
-bash
-Sempre exibir os detalhes
+CRUD de tarefas com:
 
-Copiar
-yourboard/
-├── config/         # Configurações do banco de dados
-├── controllers/    # Controladores com regras de negócio
-├── models/         # Models para manipulação de dados
-├── routes/         # Rotas da aplicação
-├── scripts/        # Script init-db com schema do banco
-├── tests/          # Testes automatizados
-├── views/          # (opcional - se utilizar templates)
-├── server.js       # Arquivo principal do servidor
-├── .env.example    # Exemplo de variáveis de ambiente
-└── README.md
+Título, descrição, status, datas (desejada e limite), importância e progresso
+
+Categoria (com prioridade)
+
+Origem (com relevância)
+
+Agenda de tarefas com data/hora de início/fim e anotações
+
+Visualização do progresso e produtividade
+
+Padrão MVC (Model-View-Controller)
+
 Scripts Disponíveis
-npm start: Inicia o servidor na porta definida
+-------------------
 
-npm run dev: Inicia com nodemon para desenvolvimento
+* `npm start`: Inicia o servidor Node.js.
+* `npm run dev`: Inicia o servidor com `nodemon`, reiniciando automaticamente após alterações no código.
+* `npm run test`: Executa os testes automatizados.
+* `npm run test:coverage`: Executa os testes e gera um relatório de cobertura de código.
 
-npm run init-db: Executa os scripts de banco de dados
+Estrutura de Diretórios
+-----------------------
 
-npm run test: Executa os testes (se aplicáveis)
+* **`config/`**: Configurações do banco de dados e outras configurações do projeto.
+* **`controllers/`**: Controladores da aplicação (lógica de negócio).
+* **`models/`**: Modelos da aplicação (definições de dados e interações com o banco de dados).
+* **`routes/`**: Rotas da aplicação.
+* **`tests/`**: Testes automatizados.
+* **`views/`**: Views da aplicação (se aplicável).
 
-npm run test:coverage: Gera cobertura de testes (opcional)
-
-Tecnologias Utilizadas
-Node.js
-
-Express
-
-PostgreSQL
-
-Supabase
-
-DBeaver
-
-Prints / Wireframes
-Tela de Login
-
-Tela Inicial com visualização resumida de:
-
-Agenda
-
-Gráficos de progresso
-
-Diário
-
-Atalhos rápidos
-
-Os wireframes foram desenvolvidos em média fidelidade e podem ser encontrados na pasta /docs.
 
 Autor
 Caio Almeida Mota
 Projeto acadêmico - INTELI, 2025
 
 Licença
-Este projeto foi desenvolvido com fins educacionais e não possui fins comerciais.
-Sinta-se à vontade para adaptar e contribuir.
+-------
 
-Observações
-O arquivo .env não deve ser versionado por segurança.
 
-Para dúvidas ou sugestões, entre em contato ou abra uma issue.
-"""
 
-Caminho de saída do arquivo
-file_path = Path("/mnt/data/README_YourBoard.md")
-file_path.write_text(readme_content)
-
-file_path.name
+Este README.md fornece uma visão geral clara do boilerplate, incluindo instruções de instalação, configuração do banco de dados, funcionalidades principais, scripts disponíveis, estrutura de diretórios, como contribuir e informações de licença. Certifique-se de personalizar as seções com detalhes específicos do seu projeto conforme necessário.
