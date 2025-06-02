@@ -17,7 +17,7 @@
 ## <a name="c1"></a>1. Introdução (Semana 01)
 
 **Descrição**:  
-O **TaskFlow** é um gerenciador de tarefas voltado para jovens estudantes e profissionais que buscam mais produtividade e clareza em suas rotinas. A ferramenta permite organizar tarefas, acompanhar o progresso semanal com gráficos intuitivos e personalizar categorias conforme suas metas. A aplicação une visualização inteligente de dados com usabilidade leve, sendo ideal para quem precisa conciliar diversas demandas sem se perder.
+O **Your Board** é um gerenciador de tarefas voltado para jovens estudantes e profissionais que buscam mais produtividade e clareza em suas rotinas. A ferramenta permite organizar tarefas, acompanhar o progresso semanal com gráficos intuitivos e personalizar categorias conforme suas metas. A aplicação une visualização inteligente de dados com usabilidade leve, sendo ideal para quem precisa conciliar diversas demandas sem se perder.
 
 **Objetivo**:  
 Criar um sistema web responsivo e amigável que centralize compromissos e tarefas do usuário, promovendo uma gestão de tempo eficaz, especialmente voltada a estudantes universitários com rotina intensa e múltiplos papéis.
