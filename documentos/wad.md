@@ -376,7 +376,60 @@ Oferece botões rápidos para criação de tarefas, adição de anotações, vis
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
+### Introdução
+
+O **Your Board** é uma aplicação web desenvolvida para facilitar o acompanhamento e a gestão de tarefas e compromissos acadêmicos de forma simples e visual. Este protótipo tem como objetivo representar a estrutura inicial do sistema, destacando a navegação, funcionalidades principais e a experiência do usuário.
+
+A interface segue uma abordagem limpa e organizada, priorizando a usabilidade e o foco nas informações mais relevantes para o usuário. A paleta de cores utilizada busca transmitir profissionalismo, clareza e acessibilidade visual.
+
+<img src="../assets/prototype.png" alt="Protótipo Your Board">
+
+### Descrição das Telas
+
+#### **1. Tela de Login**
+**Objetivo:** Permitir o acesso ao sistema de forma segura, com autenticação por login e senha.  
+**Componentes:**
+- Logo
+- Campos para usuário e senha
+- Botão Entrar
+- Imagem ilustrativa
+
+#### **2. Tela Inicial (Dashboard)**
+**Objetivo:** Exibir uma visão geral dos principais dados e funcionalidades disponíveis.  
+**Componentes:**
+- Tabela de Agenda
+- Gráfico de Produtividade
+- Diário
+- Atalhos para facilitar o acesso para outras ferramentas pela aplicação
+
+#### 3. Tela de Cadastro de Tarefas
+**Objetivo:** Registrar novas tarefas ou compromissos no sistema.  
+**Componentes:**
+- Campos: nome, origem, descrição, categoria, prazos e importância
+- Ícone de retorno ao dashboard
+
+#### 4. Tela de Agenda Completa
+**Objetivo:** Exibir todas as atividades agendadas em formato de planner.
+**Componentes:**
+- Tabela com colunas de datas, descrições e status
+- Ícone de retorno ao dashboard
+
+#### 5. Tela de Produtividade
+**Objetivo:** Fornecer estatísticas visuais do desempenho acadêmico.  
+**Componentes:**
+- Gráfico de barras de acordo com a produtividade de cada origem de tarefa
+- Ícone de retorno ao dashboard
+
+#### 6. Tela de Diário Completo
+**Objetivo:** Exibir todas as informações que foram anotadas e tarefas que foram realizadas durante o dia.
+**Componentes:**
+- Planner em formato de tabela
+- Ícone de retorno ao dashboard
+
+#### 7. Tela de Cadastro de Atalho
+**Objetivo:** Registrar novos atalhos no sistema.  
+**Componentes:**
+- Campos: nome, link do atalho e URL da imagem do atalho
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
