@@ -2,8 +2,8 @@ const agendaModel = require('../models/agendaModel');
 
 // Criar uma nova agenda
 exports.criarAgenda = async (req, res) => {
-  const { tarefa_id, data_inicio, data_fim, anotacoes } = req.body;
-  const values = [tarefa_id, data_inicio, data_fim, anotacoes];
+  const { task_id, start_time, end_time, notes } = req.body;
+  const values = [task_id, start_time, end_time, notes];
   try {
     const result = await agendaModel.criarAgenda(values);
     res.status(201).json(result.rows[0]);
@@ -25,8 +25,8 @@ exports.listarAgendas = async (req, res) => {
 // Editar uma agenda
 exports.editarAgenda = async (req, res) => {
   const { id } = req.params;
-  const { tarefa_id, data_inicio, data_fim, anotacoes } = req.body;
-  const values = [tarefa_id, data_inicio, data_fim, anotacoes, id];
+  const { task_id, start_time, end_time, notes } = req.body;
+  const values = [task_id, start_time, end_time, notes, id];
   try {
     const result = await agendaModel.editarAgenda(values);
     if (result.rows.length === 0) {

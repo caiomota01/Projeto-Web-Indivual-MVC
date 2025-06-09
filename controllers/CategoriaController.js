@@ -2,8 +2,8 @@ const categoriaModel = require('../models/categoriaModel');
 
 // Criar uma nova categoria
 exports.criarCategoria = async (req, res) => {
-  const { nome, prioridade } = req.body;
-  const values = [nome, prioridade];
+  const { name, priority } = req.body;
+  const values = [name, priority];
   try {
     const result = await categoriaModel.criarCategoria(values);
     res.status(201).json(result.rows[0]);
@@ -25,8 +25,8 @@ exports.listarCategorias = async (req, res) => {
 // Editar uma categoria
 exports.editarCategoria = async (req, res) => {
   const { id } = req.params;
-  const { nome, prioridade } = req.body;
-  const values = [nome, prioridade, id];
+  const { name, priority } = req.body;
+  const values = [name, priority, id];
   try {
     const result = await categoriaModel.editarCategoria(values);
     if (result.rows.length === 0) {

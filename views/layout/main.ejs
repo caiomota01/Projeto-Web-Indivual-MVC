@@ -3,27 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= pageTitle %></title>  
-  <style>
-    <%- include('../css/style.css'); %>
-  </style>
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Chart.js para os gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <!-- Inclui o cabeçalho como um partial -->
-  <%- include('../components/header') %>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/dashboard" class="<%= currentPage === 'dashboard' ? 'active' : '' %>">Dashboard</a></li>
+          <li><a href="/tarefas" class="<%= currentPage === 'tarefas' ? 'active' : '' %>">Tarefas</a></li>
+          <li><a href="/agenda" class="<%= currentPage === 'agenda' ? 'active' : '' %>">Agenda</a></li>
+          <li><a href="/graficos" class="<%= currentPage === 'graficos' ? 'active' : '' %>">Gráficos</a></li>
+          <li><a href="/diario" class="<%= currentPage === 'diario' ? 'active' : '' %>">Diário</a></li>
+          <li><a href="/atalhos" class="<%= currentPage === 'atalhos' ? 'active' : '' %>">Atalhos</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-  <main>
-    <!-- Renderiza o conteúdo da página específica -->
-    <%- include(content) %>
-  </main>
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+      
+      <div class="content">
+        <%- body %>
+      </div>
+    </main>
+  </div>
 
-  <footer>
-    <!-- Rodapé comum aqui -->
-    <p>Rodapé da Aplicação</p>
-  </footer>
-
-  <!-- Adicione scripts JS se necessário -->
-  <script src="/js/script.js"></script>
-  
+  <!-- Scripts específicos da página -->
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
 </body>
 </html>

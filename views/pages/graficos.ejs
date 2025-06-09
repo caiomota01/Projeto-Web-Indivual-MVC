@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <%- include('../partials/navigation') %>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+
+      <div class="content">
+        <div class="graficos-container">
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-chart-pie text-primary"></i> Tarefas por Status
+            </h3>
+            <div class="chart-container">
+              <canvas id="statusChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-chart-bar text-success"></i> Progresso por Categoria
+            </h3>
+            <div class="chart-container">
+              <canvas id="categoriaChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-chart-doughnut text-warning"></i> Tarefas por Origem
+            </h3>
+            <div class="chart-container">
+              <canvas id="origemChart"></canvas>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-chart-line text-info"></i> Evolução Semanal
+            </h3>
+            <div class="chart-container">
+              <canvas id="evolucaoChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
+</body>
+</html>

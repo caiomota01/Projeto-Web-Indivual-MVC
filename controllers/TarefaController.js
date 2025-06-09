@@ -2,8 +2,8 @@ const tarefaModel = require('../models/tarefaModel');
 
 // Criar uma nova tarefa
 exports.criarTarefa = async (req, res) => {
-  const { titulo, descricao, status, data_desejada, data_limite, importancia, progresso, usuario_id, categoria_id, origem_id } = req.body;
-  const values = [titulo, descricao, status, data_desejada, data_limite, importancia, progresso, usuario_id, categoria_id, origem_id];
+  const { title, description, status, desired_date, deadline, importance, progress, user_id, category_id, origin_id } = req.body;
+  const values = [title, description, status, desired_date, deadline, importance, progress, user_id, category_id, origin_id];
   try {
     const result = await tarefaModel.criarTarefa(values);
     res.status(201).json(result.rows[0]);
@@ -25,8 +25,8 @@ exports.listarTarefas = async (req, res) => {
 // Editar uma tarefa
 exports.editarTarefa = async (req, res) => {
   const { id } = req.params;
-  const { titulo, descricao, status, data_desejada, data_limite, importancia, progresso, usuario_id, categoria_id, origem_id } = req.body;
-  const values = [titulo, descricao, status, data_desejada, data_limite, importancia, progresso, usuario_id, categoria_id, origem_id, id];
+  const { title, description, status, desired_date, deadline, importance, progress, user_id, category_id, origin_id } = req.body;
+  const values = [title, description, status, desired_date, deadline, importance, progress, user_id, category_id, origin_id, id];
   try {
     const result = await tarefaModel.editarTarefa(values);
     if (result.rows.length === 0) {

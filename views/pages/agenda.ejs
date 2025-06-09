@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <%- include('../partials/navigation') %>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+
+      <div class="content">
+<div class="agenda-container">
+  <!-- Controles do Calendário -->
+  <div class="card">
+    <h3 class="card-title">
+      <i class="fas fa-calendar-alt text-primary"></i> Agenda
+    </h3>
+    <div class="calendar-controls">
+      <button id="prev-month" class="btn btn-secondary btn-sm">
+        <i class="fas fa-chevron-left"></i> Mês Anterior
+      </button>
+      <h4 id="current-month" class="text-center">Carregando...</h4>
+      <button id="next-month" class="btn btn-secondary btn-sm">
+        Próximo Mês <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Calendário -->
+  <div class="card">
+    <div class="calendar-view">
+      <div class="calendar-header">
+        <div class="calendar-grid">
+          <div class="calendar-day-header">Dom</div>
+          <div class="calendar-day-header">Seg</div>
+          <div class="calendar-day-header">Ter</div>
+          <div class="calendar-day-header">Qua</div>
+          <div class="calendar-day-header">Qui</div>
+          <div class="calendar-day-header">Sex</div>
+          <div class="calendar-day-header">Sáb</div>
+        </div>
+      </div>
+      <div id="calendar-body" class="calendar-grid">
+        <!-- Dias do calendário serão gerados via JavaScript -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tarefas do Dia Selecionado -->
+  <div class="card">
+    <h3 class="card-title">Tarefas do Dia: <span id="selected-date">Selecione um dia</span></h3>
+    <div id="tarefas-do-dia">
+      <p class="loading">Selecione um dia no calendário para ver as tarefas</p>
+    </div>
+  </div>
+  
+  <!-- Formulário de Nova Agenda -->
+  <div class="card" id="form-agenda-container" style="display: none;">
+    <h3 class="card-title">Agendar Tarefa</h3>
+    <form id="form-agenda">
+      <div class="form-group">
+        <label for="tarefa-agenda">Tarefa</label>
+        <select id="tarefa-agenda" name="task_id" class="form-control" required>
+          <option value="">Selecione uma tarefa</option>
+          <!-- Tarefas serão carregadas via JavaScript -->
+        </select>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="data-inicio">Data/Hora de Início</label>
+          <input type="datetime-local" id="data-inicio" name="start_time" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="data-fim">Data/Hora de Fim</label>
+          <input type="datetime-local" id="data-fim" name="end_time" class="form-control" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="anotacoes-agenda">Anotações</label>
+        <textarea id="anotacoes-agenda" name="notes" class="form-control" rows="3"></textarea>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Salvar Agendamento</button>
+      <button type="button" id="cancelar-agenda" class="btn btn-secondary">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal para detalhes da tarefa -->
+<div id="task-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3 id="modal-task-title">Título da Tarefa</h3>
+    <div id="modal-task-details">
+      <!-- Detalhes da tarefa serão carregados via JavaScript -->
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
+</body>
+</html>

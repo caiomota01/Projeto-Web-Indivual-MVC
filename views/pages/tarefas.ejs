@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <%- include('../partials/navigation') %>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+
+      <div class="content">
+<div class="tarefas-container">
+  <!-- Formulário de Nova Tarefa -->
+  <div class="card">
+    <h3 class="card-title">
+      <i class="fas fa-plus-circle"></i> Nova Tarefa
+    </h3>
+    <form id="form-tarefa" class="task-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="titulo-tarefa">Título</label>
+          <input type="text" id="titulo-tarefa" name="title" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="categoria-tarefa">Categoria</label>
+          <select id="categoria-tarefa" name="category_id" class="form-control">
+            <option value="">Selecione uma categoria</option>
+            <!-- Categorias serão carregadas via JavaScript -->
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="origem-tarefa">Origem</label>
+          <select id="origem-tarefa" name="origin_id" class="form-control">
+            <option value="">Selecione uma origem</option>
+            <!-- Origens serão carregadas via JavaScript -->
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="descricao-tarefa">Descrição</label>
+        <textarea id="descricao-tarefa" name="description" class="form-control" rows="3"></textarea>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="data-desejada">Data Desejada</label>
+          <input type="date" id="data-desejada" name="desired_date" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="data-limite">Data Limite</label>
+          <input type="date" id="data-limite" name="deadline" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="importancia">Importância (1-5)</label>
+          <select id="importancia" name="importance" class="form-control">
+            <option value="1">1 - Baixa</option>
+            <option value="2">2</option>
+            <option value="3" selected>3 - Média</option>
+            <option value="4">4</option>
+            <option value="5">5 - Alta</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="progresso">Progresso (%)</label>
+          <input type="number" id="progresso" name="progress" class="form-control" min="0" max="100" value="0">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="status-tarefa">Status</label>
+        <select id="status-tarefa" name="status" class="form-control">
+          <option value="pendente">Pendente</option>
+          <option value="em_andamento">Em Andamento</option>
+          <option value="concluida">Concluída</option>
+          <option value="cancelada">Cancelada</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">
+        <i class="fas fa-save"></i> Salvar Tarefa
+      </button>
+      <button type="button" id="cancelar-edicao" class="btn btn-secondary" style="display: none;">
+        <i class="fas fa-times"></i> Cancelar
+      </button>
+    </form>
+  </div>
+  
+  <!-- Filtros -->
+  <div class="card">
+    <h3 class="card-title">
+      <i class="fas fa-filter"></i> Filtros
+    </h3>
+    <div class="task-filters">
+      <select id="filtro-status" class="filter-select">
+        <option value="">Todos os Status</option>
+        <option value="pendente">Pendente</option>
+        <option value="em_andamento">Em Andamento</option>
+        <option value="concluida">Concluída</option>
+        <option value="cancelada">Cancelada</option>
+      </select>
+      
+      <select id="filtro-categoria" class="filter-select">
+        <option value="">Todas as Categorias</option>
+        <!-- Categorias serão carregadas via JavaScript -->
+      </select>
+      
+      <select id="filtro-origem" class="filter-select">
+        <option value="">Todas as Origens</option>
+        <!-- Origens serão carregadas via JavaScript -->
+      </select>
+      
+      <button id="limpar-filtros" class="btn btn-secondary btn-sm">
+        <i class="fas fa-eraser"></i> Limpar Filtros
+      </button>
+    </div>
+  </div>
+  
+  <!-- Lista de Tarefas -->
+  <div class="card">
+    <h3 class="card-title">
+      <i class="fas fa-list-ul"></i> Minhas Tarefas
+    </h3>
+    <div class="task-list" id="lista-tarefas">
+      <p class="loading">Carregando tarefas...</p>
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
+</body>
+</html>

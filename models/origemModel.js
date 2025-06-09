@@ -1,7 +1,7 @@
 const db = require('../config/db');
 
 exports.criarOrigem = (dados) => {
-  const query = 'INSERT INTO origem (nome, relevancia) VALUES ($1, $2) RETURNING *';
+  const query = 'INSERT INTO origins (name, relevance) VALUES ($1, $2) RETURNING *';
   return db.query(query, dados);
 };
 
@@ -10,10 +10,10 @@ exports.listarOrigens = () => {
 };
 
 exports.editarOrigem = (dados) => {
-  const query = 'UPDATE origem SET nome = $1, relevancia = $2 WHERE id = $3 RETURNING *';
+  const query = 'UPDATE origins SET name = $1, relevance = $2 WHERE id = $3 RETURNING *';
   return db.query(query, dados);
 };
 
 exports.excluirOrigem = (id) => {
-  return db.query('DELETE FROM origem WHERE id = $1 RETURNING *', [id]);
-}; 
+  return db.query('DELETE FROM origins WHERE id = $1 RETURNING *', [id]);
+};

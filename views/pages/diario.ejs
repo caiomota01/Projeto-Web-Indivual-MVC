@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <%- include('../partials/navigation') %>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+
+      <div class="content">
+        <div class="diario-container">
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-pen-fancy text-primary"></i> Meu Diário
+            </h3>
+            <div class="diario-form">
+              <div class="form-group">
+                <label for="data-diario">
+                  <i class="fas fa-calendar"></i> Data
+                </label>
+                <input type="date" id="data-diario" class="form-control" value="<%= new Date().toISOString().split('T')[0] %>">
+              </div>
+
+              <div class="form-group">
+                <label for="conteudo-diario">
+                  <i class="fas fa-edit"></i> Anotações do Dia
+                </label>
+                <textarea id="conteudo-diario" class="form-control diario-textarea" placeholder="Como foi seu dia hoje? O que você aprendeu? Quais foram seus desafios?"></textarea>
+              </div>
+
+              <button id="salvar-diario" class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar Anotações
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-history text-secondary"></i> Histórico
+            </h3>
+            <div class="diario-historico" id="historico-diario">
+              <!-- Histórico será carregado via JavaScript -->
+              <p class="loading">Carregando histórico...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
+</body>
+</html>

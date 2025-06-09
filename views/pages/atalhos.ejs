@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YourBoard - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <h1>YourBoard</h1>
+      </div>
+      <%- include('../partials/navigation') %>
+    </aside>
+
+    <main class="main-content">
+      <header class="page-header">
+        <h2><%= pageTitle %></h2>
+      </header>
+
+      <div class="content">
+        <div class="atalhos-container">
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-plus-circle text-success"></i> Novo Atalho
+            </h3>
+            <form id="form-atalho">
+              <div class="form-group">
+                <label for="nome-atalho">
+                  <i class="fas fa-tag"></i> Nome
+                </label>
+                <input type="text" id="nome-atalho" name="nome" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="url-atalho">
+                  <i class="fas fa-globe"></i> URL
+                </label>
+                <input type="url" id="url-atalho" name="url" class="form-control" required placeholder="https://...">
+              </div>
+
+              <div class="form-group">
+                <label for="descricao-atalho">
+                  <i class="fas fa-comment"></i> Descrição
+                </label>
+                <textarea id="descricao-atalho" name="descricao" class="form-control"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Salvar Atalho
+              </button>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">
+              <i class="fas fa-bookmark text-warning"></i> Meus Atalhos
+            </h3>
+            <div class="atalhos-grid" id="lista-atalhos">
+              <!-- Atalhos serão carregados via JavaScript -->
+              <p class="loading">Carregando atalhos...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <% if (typeof pageScript !== 'undefined') { %>
+    <script src="/js/<%= pageScript %>.js"></script>
+  <% } %>
+</body>
+</html>
